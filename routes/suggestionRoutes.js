@@ -1,12 +1,10 @@
 const express = require("express");
-const db = require("../config/db"); // Import database connection
+const db = require("../config/db");
 const router = express.Router();
 
-// Endpoint to submit a suggestion
 router.post("/api/suggestions", async (req, res) => {
   const { name, mobile, suggestion } = req.body;
 
-  // Validate input
   if (!name || !mobile || !suggestion) {
     return res
       .status(400)
@@ -32,7 +30,6 @@ router.post("/api/suggestions", async (req, res) => {
   }
 });
 
-// Fetch all suggestions (optional, for admin purposes)
 router.get("/api/suggestions", (req, res) => {
   const query = "SELECT * FROM suggestions ORDER BY timestamp DESC";
 

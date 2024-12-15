@@ -13,7 +13,6 @@ const findUserByMobile = async (mobile) => {
   return rows[0];
 };
 
-// Function to update suggestion for the user
 const updateSuggestionForUser = async (mobile, suggestion) => {
   const query = "UPDATE users SET suggestion = ? WHERE mobile = ?";
   return db.execute(query, [suggestion, mobile]);
