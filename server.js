@@ -53,6 +53,19 @@ app.post("/api/suggestions", async (req, res) => {
   }
 });
 
+// New route to fetch all suggestions
+app.get("/api/suggestions", async (req, res) => {
+  try {
+    const [results] = await db.execute(
+      "SELECT * FROM suggestions ORDER BY timestamp DESC"
+    );
+    res.status(200).json(results); // Send all suggestions to the client
+  } catch (err) {
+    console.error("Error fetching suggestions:", err);
+    res.status(500).json({ message: "Failed to fetch suggestions" });
+  }
+});
+
 const PORT = process.env.PORT || 5001;
 
 (async () => {
